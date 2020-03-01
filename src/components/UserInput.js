@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "../css/Style.css";
+import Modal from "./Modal";
+import Timetable from "./Timetable";
 
-const UserInput = () => {
+const UserInput = props => {
   const APP_ID = process.env.REACT_APP_APP_ID;
   const APP_KEY = process.env.REACT_APP_APP_KEY;
 
@@ -22,7 +24,8 @@ const UserInput = () => {
       .then(response => setArrivals(response.data))
       .catch(
         error =>
-          console.log("Error encounteres:", error) || errors.concat(error)
+          console.log("Error encountered:", error.message) ||
+          errors.concat(error)
       );
   };
 
@@ -35,7 +38,8 @@ const UserInput = () => {
       .then(response => setTubes(response.data))
       .catch(
         error =>
-          console.log("Error encounteres:", error) || errors.concat(error)
+          console.log("Error encountered:", error.message) ||
+          errors.concat(error)
       );
   };
 
@@ -48,7 +52,8 @@ const UserInput = () => {
       .then(response => setTubeRoutes(response.data))
       .catch(
         error =>
-          console.log("Error encounteres:", error) || errors.concat(error)
+          console.log("Error encountered:", error.message) ||
+          errors.concat(error)
       );
   };
 
@@ -60,9 +65,11 @@ const UserInput = () => {
       .then(response => setTimetable(response.data))
       .catch(
         error =>
-          console.log("Error encounteres:", error) || errors.concat(error)
+          console.log("Error encountered:", error.message) ||
+          errors.concat(error)
       );
   };
+
   useEffect(() => {
     getLineByModeTube();
     getRouteByModeTube();
@@ -122,65 +129,75 @@ const UserInput = () => {
       station => station.name === destination
     );
 
-    getArrivalsForStop({
-      lineID: originationDetails.lineID,
-      naptanID: originationDetails.id
-    });
+    destination !== "None"
+      ? getTimetableFromStationToStation({
+          lineID: originationDetails?.lineID,
+          originationID: originationDetails?.id,
+          destinationID: destinationDetails?.id
+        })
+      : getArrivalsForStop({
+          lineID: originationDetails?.lineID,
+          naptanID: originationDetails?.id
+        });
 
-    console.log(
-      "arrivals",
-      arrivals?.filter(arrival => arrival.destinationName === destination)
-    );
-
-    getTimetableFromStationToStation({
-      lineID: originationDetails.lineID,
-      originationID: originationDetails.id,
-      destinationID: destinationDetails.id
-    });
-
-    console.log("timerer", timetable);
+    console.log("timerer", arrivals);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-row">
-        <div className="form-group col">
-          <label htmlFor="originationStation">Origination Station</label>
-          <select
-            className="custom-select form-control"
-            id="originationStation"
-          >
-            {uniqueOriginationStationNames &&
-              uniqueOriginationStationNames.map((station, index) => (
-                <option key={index} value={station}>
-                  {station}
-                </option>
-              ))}
-          </select>
-          {console.log("tubes", tubes)}
-          {console.log("routes", tubeRoutes)}
-        </div>
+    <div>
+      <div className="jumbotron bg-warning text-dark">
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="form-group col">
+              <label htmlFor="originationStation">
+                <b>Origination Station</b>
+              </label>
+              <select
+                className="custom-select form-control"
+                id="originationStation"
+              >
+                {uniqueOriginationStationNames &&
+                  uniqueOriginationStationNames.map((station, index) => (
+                    <option key={index} value={station}>
+                      {station}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
-        <div className="form-group col">
-          <label htmlFor="destinationStation">Destination Station</label>
-          <select
-            className="custom-select form-control"
-            id="destinationStation"
+            <div className="form-group col">
+              <label htmlFor="destinationStation">
+                <b>Destination Station</b>
+              </label>
+              <select
+                className="custom-select form-control"
+                id="destinationStation"
+              >
+                <option>None</option>
+                {uniqueDestinationStationNames &&
+                  uniqueDestinationStationNames.map((station, index) => (
+                    <option key={index} value={station}>
+                      {station}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-light"
+            data-toggle="modal"
+            data-target="#timetableModal"
           >
-            {uniqueDestinationStationNames &&
-              uniqueDestinationStationNames.map((station, index) => (
-                <option key={index} value={station}>
-                  {station}
-                </option>
-              ))}
-          </select>
-        </div>
+            Search
+          </button>
+        </form>
       </div>
+      <Modal {...props} id='timetableModal' arrivals={arrivals}/>
 
-      <button type="submit" className="btn btn-warning">
-        Search
-      </button>
-    </form>
+      <Timetable {...props} arrivals={arrivals}/>
+    </div>
   );
 };
 
