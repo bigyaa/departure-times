@@ -6,14 +6,14 @@ The main goal here is to provide a service that gives real-time departure time f
 
 This solution focuses on the **front-end** part, which includes the *UI/UX*, *API integration* and *data manipulation*.
 
-### Technical Choices
+### Technical Choices:
 - This project was bootstrapped using **[Create React App](https://github.com/facebook/create-react-app)**. This helped to create the project within a small time-frame without manually having to configure files and dependencies. 
 - For styling, **[Bootstrap](https://getbootstrap.com/)** and **CSS** were used. Bootstrap helps to build responsive, mobile-first web applications quickly and effectively.
 - To integrate APIs, **[Axios](https://github.com/axios/axios)** was used. Using Axios, it's easy to send asynchronous HTTP request to REST endpoints and perform CRUD operations.
 - **Jest** and **Enzyme** were used for testing the react components.
 - If time allows, the **google-maps-react** library will be used to visually demonstrate the routes in the map, for a better user experience.
 
-### What I left out
+### What I left out?
 - Display departure time of transports within the area of the user by geo-localizing the user.
 
 ### What I might do differently if I were to spend additional time on the project?
@@ -27,8 +27,8 @@ This solution focuses on the **front-end** part, which includes the *UI/UX*, *AP
 - [Coding exercises I did as a part of a fullstack course](https://github.com/bigyaa/fullstackopen2019_exercises)
 - [Angry Birds Game using pure HTML, CSS and JS](https://github.com/bigyaa/angry-birds)
 
-### My Public Profiles
+### My Public Profiles:
 - **[Github](https://github.com/bigyaa)**
-- **[Linkedin](https://www.linkedin.com/in/bigyabajracharya/)
+- **[Linkedin](https://www.linkedin.com/in/bigyabajracharya/)**
 
-This application is hosted ####here.
+This application is hosted ***here***.
