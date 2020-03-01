@@ -9,6 +9,7 @@ This solution focuses on the **front-end** part, which includes the *UI/UX*, *AP
 ### Technical Choices:
 - This project was bootstrapped using **[Create React App](https://github.com/facebook/create-react-app)**. This helped to create the project within a small time-frame without manually having to configure files and dependencies. 
 - For styling, **[Bootstrap](https://getbootstrap.com/)** and **CSS** were used. Bootstrap helps to build responsive, mobile-first web applications quickly and effectively.
+- **[Momentjs](https://momentjs.com/)** was used to format the time as needed.
 - To integrate APIs, **[Axios](https://github.com/axios/axios)** was used. Using Axios, it's easy to send asynchronous HTTP request to REST endpoints and perform CRUD operations.
 - **Jest** and **Enzyme** were used for testing the react components.
 - If time allows, the **google-maps-react** library will be used to visually demonstrate the routes in the map, for a better user experience.
