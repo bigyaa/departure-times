@@ -210,6 +210,21 @@ const UserInput = props => {
         <OriginationTimetable {...props} arrivals={arrivals} />
       )}
       {showMap && <GoogleMap {...props} />}
+      {console.log(
+        "timetable",
+        timetable?.timetable?.routes?.[0]?.schedules &&
+        timetable?.timetable?.routes?.[0]?.schedules?.map(data => {
+          return {
+            name: data.name,
+            departureTime: data.periods.map(data2 => {
+              return { time: data2.fromTime.hour + ":" + data2.fromTime.minute };
+            }),
+            destinationArrivalTime: data.periods.map(data2 => {
+              return { time: data2.toTime.hour + ":" + data2.toTime.minute };
+            }),
+          };
+        })
+      )}
     </div>
   );
 };
