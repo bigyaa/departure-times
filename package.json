@@ -14,7 +14,9 @@
     "google-maps-react": "^2.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "axios": "^0.19.2",
+    "moment": "^2.24.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,7 +40,5 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.19.2",
-    "moment": "^2.24.0"
   }
 }

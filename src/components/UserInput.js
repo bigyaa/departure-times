@@ -196,7 +196,7 @@ const UserInput = props => {
       </div>
       <Modal {...props} id='timetableModal' arrivals={arrivals}/>
 
-      <Timetable {...props} arrivals={arrivals}/>
+      {arrivals.length>0 && <Timetable {...props} arrivals={arrivals}/>}
     </div>
   );
 };
