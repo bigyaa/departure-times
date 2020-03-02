@@ -10,7 +10,6 @@ const UserInput = props => {
   const APP_KEY = process.env.REACT_APP_APP_KEY;
 
   const [arrivals, setArrivals] = useState([]);
-  const [tubes, setTubes] = useState([]);
   const [tubeRoutes, setTubeRoutes] = useState([]);
   const [timetable, setTimetable] = useState([]);
   const [showMap, setShowMap] = useState(false);
@@ -23,20 +22,6 @@ const UserInput = props => {
         `https://api.tfl.gov.uk/Line/${data.lineID}/Arrivals/${data.naptanID}?app_id=${APP_ID}&app_key=${APP_KEY}`
       )
       .then(response => setArrivals(response.data))
-      .catch(
-        error =>
-          console.log("Error encountered:", error.message) ||
-          errors.concat(error)
-      );
-  };
-
-  // fetches all line information having mode = tube
-  const getLineByModeTube = () => {
-    axios
-      .get(
-        `https://api.tfl.gov.uk/Line/Mode/tube?app_id=${APP_ID}&app_key=${APP_KEY}`
-      )
-      .then(response => setTubes(response.data))
       .catch(
         error =>
           console.log("Error encountered:", error.message) ||
@@ -138,7 +123,6 @@ const UserInput = props => {
   const showCurrentLocation = () => setShowMap(true);
 
   useEffect(() => {
-    getLineByModeTube();
     getRouteByModeTube();
   }, []);
 
@@ -198,6 +182,7 @@ const UserInput = props => {
 
       {arrivals.length > 0 && <Timetable {...props} arrivals={arrivals} />}
       {showMap && <GoogleMap {...props} />}
+      {console.log("timetable", timetable)}
     </div>
   );
 };
