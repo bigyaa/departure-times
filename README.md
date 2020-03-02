@@ -16,7 +16,6 @@ This solution focuses on the **front-end** part, which includes the *UI/UX*, *AP
 ### What I left out?
 - Display departure time of transports within the area of the user by geo-localizing the user.
 - Test files.
-- Display error messages.
 
 ### What I might do differently if I were to spend additional time on the project?
 1. Use **Jest** and **Enzyme** for testing the react components.

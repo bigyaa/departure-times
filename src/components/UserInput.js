@@ -101,6 +101,7 @@ const UserInput = props => {
     event.preventDefault();
     setClearError(true);
     setDisplayTable(true);
+    setShowMap(false);
 
     const origination = document.getElementById("originationStation").value;
     const destination = document.getElementById("destinationStation").value;

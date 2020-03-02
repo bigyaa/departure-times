@@ -6,6 +6,10 @@ body {
   height: 100%;
 }
 
+.main{
+    height:150vh;
+}
+
 .map {
   width: 82% !important;
 }
