@@ -3,6 +3,7 @@ import axios from "axios";
 
 import "../css/Style.css";
 import Timetable from "./Timetable";
+import GoogleMap from './GoogleMap';
 
 const UserInput = props => {
   const APP_ID = process.env.REACT_APP_APP_ID;
@@ -12,6 +13,7 @@ const UserInput = props => {
   const [tubes, setTubes] = useState([]);
   const [tubeRoutes, setTubeRoutes] = useState([]);
   const [timetable, setTimetable] = useState([]);
+  const [showMap, setShowMap] = useState(false);
 
   let errors=[];
 
@@ -68,11 +70,6 @@ const UserInput = props => {
           errors.concat(error)
       );
   };
-
-  useEffect(() => {
-    getLineByModeTube();
-    getRouteByModeTube();
-  }, []);
 
   const originationStations =
     tubeRoutes &&
@@ -138,6 +135,13 @@ const UserInput = props => {
         });
   };
 
+  const showCurrentLocation = () => setShowMap(true);
+
+  useEffect(() => {
+    getLineByModeTube();
+    getRouteByModeTube();
+  }, []);
+
   return (
     <div>
       {errors.length>0 && <div class="alert alert-danger" role="alert">
@@ -188,10 +192,12 @@ const UserInput = props => {
           >
             Search
           </button>
+          <button type="button" className="btn btn-primary ml-3" onClick={showCurrentLocation}>Show Current Location</button>
         </form>
       </div>
 
       {arrivals.length > 0 && <Timetable {...props} arrivals={arrivals} />}
+      {showMap && <GoogleMap {...props} />}
     </div>
   );
 };
