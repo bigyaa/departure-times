@@ -10,7 +10,7 @@ function App(props) {
   return (
     <div className="main bg-color-third">
       <div className="container">
-        <h1 className="text-center text-uppercase py-5 main-heading">
+        <h1 className="text-center text-uppercase py-4 main-heading">
           Public Transports
         </h1>
         <UserInput {...props} />

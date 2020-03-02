@@ -3,6 +3,7 @@ import axios from "axios";
 
 import OriginationTimetable from "./OriginationTimetable";
 import GoogleMap from "./GoogleMap";
+import Timetable from "./Timetable";
 
 const UserInput = props => {
   const APP_ID = process.env.REACT_APP_APP_ID;
@@ -209,22 +210,10 @@ const UserInput = props => {
       {arrivals.length > 0 && displayTable && (
         <OriginationTimetable {...props} arrivals={arrivals} />
       )}
-      {showMap && <GoogleMap {...props} />}
-      {console.log(
-        "timetable",
-        timetable?.timetable?.routes?.[0]?.schedules &&
-        timetable?.timetable?.routes?.[0]?.schedules?.map(data => {
-          return {
-            name: data.name,
-            departureTime: data.periods.map(data2 => {
-              return { time: data2.fromTime.hour + ":" + data2.fromTime.minute };
-            }),
-            destinationArrivalTime: data.periods.map(data2 => {
-              return { time: data2.toTime.hour + ":" + data2.toTime.minute };
-            }),
-          };
-        })
+      {timetable?.timetable?.routes?.[0]?.schedules && (
+        <Timetable {...props} data={timetable} />
       )}
+      {showMap && <GoogleMap {...props} />}
     </div>
   );
 };

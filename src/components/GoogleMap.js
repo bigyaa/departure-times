@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-import { MAP_API } from "../constants";
+const MAP_API = process.env.REACT_APP_MAP_API;
 
 function GoogleMap(props) {
   const [position, setPosition] = useState({ lat: 27, lng: 85 });

@@ -6,8 +6,8 @@ body {
   height: 100%;
 }
 
-.main{
-    height:150vh;
+.main {
+  height: 150vh;
 }
 
 .map {
@@ -20,11 +20,20 @@ body {
 
 .main-heading {
   font-family: "Playfair Display" !important;
-  font-size: 5vw;
+  font-size: 3.5vw;
+}
+
+.secondary-heading {
+  font-family: "Playfair Display" !important;
+  font-size: 2vw;
 }
 
 .input-label,
 .custom-button {
   font-family: "Titillium Web";
-  font-size: 1.5vw;
+  font-size: 1.35vw;
+}
+
+.row_span-wrapper th:first-child{
+  width:150px;
 }
