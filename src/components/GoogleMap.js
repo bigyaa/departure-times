@@ -25,7 +25,7 @@ function GoogleMap(props) {
           zoom={8}
           initialCenter={position}
         >
-          <Marker position={position} />
+          {navigator?.geolocation && <Marker position={position} />}
         </Map>
       )}
     </div>
