@@ -12,7 +12,6 @@ const UserInput = props => {
   const [tubes, setTubes] = useState([]);
   const [tubeRoutes, setTubeRoutes] = useState([]);
   const [timetable, setTimetable] = useState([]);
-  const [error, setError] = useState([]);
 
   let errors=[];
 
@@ -25,7 +24,7 @@ const UserInput = props => {
       .catch(
         error =>
           console.log("Error encountered:", error.message) ||
-          setError(error)
+          errors.concat(error)
       );
   };
 
@@ -141,8 +140,8 @@ const UserInput = props => {
 
   return (
     <div>
-      {error.length>0 && <div class="alert alert-danger" role="alert">
-        {error}
+      {errors.length>0 && <div class="alert alert-danger" role="alert">
+        {errors}
       </div>}
       <div className="jumbotron bg-warning text-dark">
         <form onSubmit={handleSubmit}>
