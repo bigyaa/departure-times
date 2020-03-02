@@ -29,11 +29,17 @@ body {
 }
 
 .input-label,
-.custom-button {
+.custom-button,
+th,
+select {
   font-family: "Titillium Web";
   font-size: 1.35vw;
 }
 
-.row_span-wrapper th:first-child{
-  width:150px;
+td {
+  font-size: 1.15vw;
+}
+
+.row_span-wrapper th:first-child {
+  width: 150px;
 }

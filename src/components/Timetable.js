@@ -21,7 +21,7 @@ const Timetable = props => {
   return (
     <div>
       <h2 className="text-center secondary-heading">Time Table</h2>
-      <table className="table table-striped table-responsive">
+      <table className="table table-striped table-responsive text-center">
         <thead></thead>
         <tbody>
           {timetableData.length > 0 &&
