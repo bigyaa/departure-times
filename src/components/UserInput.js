@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "../css/Style.css";
-import Modal from "./Modal";
 import Timetable from "./Timetable";
 
 const UserInput = props => {
@@ -13,8 +12,9 @@ const UserInput = props => {
   const [tubes, setTubes] = useState([]);
   const [tubeRoutes, setTubeRoutes] = useState([]);
   const [timetable, setTimetable] = useState([]);
+  const [error, setError] = useState([]);
 
-  let errors = [];
+  let errors=[];
 
   const getArrivalsForStop = data => {
     axios
@@ -25,7 +25,7 @@ const UserInput = props => {
       .catch(
         error =>
           console.log("Error encountered:", error.message) ||
-          errors.concat(error)
+          setError(error)
       );
   };
 
@@ -73,8 +73,6 @@ const UserInput = props => {
   useEffect(() => {
     getLineByModeTube();
     getRouteByModeTube();
-
-    return () => (errors = []);
   }, []);
 
   const originationStations =
@@ -139,12 +137,13 @@ const UserInput = props => {
           lineID: originationDetails?.lineID,
           naptanID: originationDetails?.id
         });
-
-    console.log("timerer", arrivals);
   };
 
   return (
     <div>
+      {error.length>0 && <div class="alert alert-danger" role="alert">
+        {error}
+      </div>}
       <div className="jumbotron bg-warning text-dark">
         <form onSubmit={handleSubmit}>
           <div className="form-row">
@@ -187,16 +186,13 @@ const UserInput = props => {
           <button
             type="submit"
             className="btn btn-light"
-            data-toggle="modal"
-            data-target="#timetableModal"
           >
             Search
           </button>
         </form>
       </div>
-      <Modal {...props} id='timetableModal' arrivals={arrivals}/>
 
-      {arrivals.length>0 && <Timetable {...props} arrivals={arrivals}/>}
+      {arrivals.length > 0 && <Timetable {...props} arrivals={arrivals} />}
     </div>
   );
 };

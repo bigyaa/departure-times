@@ -9,7 +9,7 @@ const Timetable = props => {
       <thead className="thead-warning">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Destination Name</th>
+          <th scope="col">Origination Station</th>
           <th scope="col">Expected Arrival</th>
           <th scope="col">Currenct Location</th>
           <th scope="col">Vehicle ID</th>
