@@ -1,4 +1,4 @@
-# Departure Times
+# Public Transports
 
 This project is done as a part of a **coding assignment**.
 
@@ -11,17 +11,18 @@ This solution focuses on the **front-end** part, which includes the *UI/UX*, *AP
 - For styling, **[Bootstrap](https://getbootstrap.com/)** and **CSS** were used. Bootstrap helps to build responsive, mobile-first web applications quickly and effectively.
 - **[Momentjs](https://momentjs.com/)** was used to format the time as needed.
 - To integrate APIs, **[Axios](https://github.com/axios/axios)** was used. Using Axios, it's easy to send asynchronous HTTP request to REST endpoints and perform CRUD operations.
-- **Jest** and **Enzyme** were used for testing the react components.
 - If time allows, the **google-maps-react** library will be used to visually demonstrate the routes in the map, for a better user experience.
 
 ### What I left out?
 - Display departure time of transports within the area of the user by geo-localizing the user.
+- Test files.
 
 ### What I might do differently if I were to spend additional time on the project?
-1. Use the **google-maps-react** library to visually demonstrate the routes in the map, for a better user experience.
-2. Find more useful APIs to facilitate public transportation information covering more areas and of different modes of transportation.
-3. Create a better UI/UX.
-4. Use Redux for state management and provide more control for the user to search routes and transportation timings.
+1. Use **Jest** and **Enzyme** for testing the react components.
+2. Use the **google-maps-react** library to visually demonstrate the routes in the map, for a better user experience.
+3. Find more useful APIs to facilitate public transportation information covering more areas and of different modes of transportation.
+4. Create a better UI/UX.
+5. Use Redux for state management and provide more control for the user to search routes and transportation timings.
 
 ### Link to other code I'm proud of:
 - [Basic Phonebook Application](https://github.com/bigyaa/fullstackopen2019_backend_exercises)
@@ -32,4 +33,4 @@ This solution focuses on the **front-end** part, which includes the *UI/UX*, *AP
 - **[Github](https://github.com/bigyaa)**
 - **[Linkedin](https://www.linkedin.com/in/bigyabajracharya/)**
 
-This application is hosted ***here***.
+This application is hosted ***[here](https://public-transport.netlify.com/)***.
