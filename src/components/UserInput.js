@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import "../css/Style.css";
-import Timetable from "./Timetable";
-import GoogleMap from './GoogleMap';
+import OriginationTimetable from "./OriginationTimetable";
+import GoogleMap from "./GoogleMap";
 
 const UserInput = props => {
   const APP_ID = process.env.REACT_APP_APP_ID;
@@ -13,8 +12,10 @@ const UserInput = props => {
   const [tubeRoutes, setTubeRoutes] = useState([]);
   const [timetable, setTimetable] = useState([]);
   const [showMap, setShowMap] = useState(false);
+  const [clearError, setClearError] = useState(false);
+  const [displayTable, setDisplayTable] = useState(true);
 
-  let errors=[];
+  let errors = [];
 
   const getArrivalsForStop = data => {
     axios
@@ -98,6 +99,9 @@ const UserInput = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    setClearError(true);
+    setDisplayTable(true);
+
     const origination = document.getElementById("originationStation").value;
     const destination = document.getElementById("destinationStation").value;
 
@@ -120,22 +124,30 @@ const UserInput = props => {
         });
   };
 
-  const showCurrentLocation = () => setShowMap(true);
+  const showCurrentLocation = () => {
+    setClearError(true);
+    setShowMap(true);
+    setDisplayTable(false);
+  };
 
   useEffect(() => {
     getRouteByModeTube();
+
+    timetable?.statusErrorMessage && setClearError(false);
   }, []);
 
   return (
     <div>
-      {errors.length>0 && <div class="alert alert-danger" role="alert">
-        {errors}
-      </div>}
-      <div className="jumbotron bg-warning text-dark">
+      {errors.length > 0 && (
+        <div className="alert alert-danger" role="alert">
+          {errors}
+        </div>
+      )}
+      <div className="jumbotron bg-color-first text-dark">
         <form onSubmit={handleSubmit}>
           <div className="form-row">
-            <div className="form-group col">
-              <label htmlFor="originationStation">
+            <div className="form-group col text-white">
+              <label htmlFor="originationStation" className="input-label">
                 <b>Origination Station</b>
               </label>
               <select
@@ -151,8 +163,8 @@ const UserInput = props => {
               </select>
             </div>
 
-            <div className="form-group col">
-              <label htmlFor="destinationStation">
+            <div className="form-group col text-white">
+              <label htmlFor="destinationStation" className="input-label">
                 <b>Destination Station</b>
               </label>
               <select
@@ -170,19 +182,33 @@ const UserInput = props => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-light"
-          >
-            Search
-          </button>
-          <button type="button" className="btn btn-primary ml-3" onClick={showCurrentLocation}>Show Current Location</button>
+          <div className="text-center pt-3">
+            <button
+              type="submit"
+              className="btn btn-light bg-color-second custom-button"
+            >
+              Search
+            </button>
+            <button
+              type="button"
+              className="btn btn-light bg-color-second ml-3 custom-button"
+              onClick={showCurrentLocation}
+            >
+              Show Current Location
+            </button>
+          </div>
         </form>
       </div>
 
-      {arrivals.length > 0 && <Timetable {...props} arrivals={arrivals} />}
+      {timetable?.statusErrorMessage && !clearError && (
+        <div className="alert alert-danger" role="alert">
+          {timetable.statusErrorMessage}
+        </div>
+      )}
+      {arrivals.length > 0 && displayTable && (
+        <OriginationTimetable {...props} arrivals={arrivals} />
+      )}
       {showMap && <GoogleMap {...props} />}
-      {console.log("timetable", timetable)}
     </div>
   );
 };

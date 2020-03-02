@@ -1,11 +1,11 @@
 import React from "react";
-import moment from 'moment';
+import moment from "moment";
 
-const Timetable = props => {
+const OriginationTimetable = props => {
   const arrivals = props.arrivals;
 
   return (
-    <table className="table m-5">
+    <table className="table table-hover m-5 width-auto">
       <thead className="thead-warning">
         <tr>
           <th scope="col">#</th>
@@ -21,7 +21,9 @@ const Timetable = props => {
             <tr key={index}>
               <th scope="row">{index + 1}</th>
               <td>{data.destinationName}</td>
-              <td>{moment(data.expectedArrival).format('MMMM Do YYYY, h:mm:ss a')}</td>
+              <td>
+                {moment(data.expectedArrival).format("MMMM Do YYYY, h:mm:ss a")}
+              </td>
               <td>{data.currentLocation}</td>
               <td>{data.vehicleId}</td>
             </tr>
@@ -31,4 +33,4 @@ const Timetable = props => {
   );
 };
 
-export default Timetable;
+export default OriginationTimetable;

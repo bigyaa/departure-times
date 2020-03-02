@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-import {MAP_API} from '../constants';
+import { MAP_API } from "../constants";
 
 function GoogleMap(props) {
   const [position, setPosition] = useState({ lat: 27, lng: 85 });
@@ -17,10 +17,10 @@ function GoogleMap(props) {
   useEffect(setLocation, []);
 
   return (
-    <div>
+    <div className="map-container clearfix">
       {position && (
         <Map
-        className='map'
+          className="map"
           google={props.google}
           zoom={8}
           initialCenter={position}
