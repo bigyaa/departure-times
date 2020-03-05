@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import OriginationTimetable from "./OriginationTimetable";
@@ -15,6 +15,8 @@ const UserInput = props => {
   const [showMap, setShowMap] = useState(false);
   const [clearError, setClearError] = useState(false);
   const [displayTable, setDisplayTable] = useState(true);
+  const [mapButtonLabel, setMapButtonLabel] = useState("Show Current Location")
+  const mapButton = useRef(null);
 
   let errors = [];
 
@@ -128,8 +130,13 @@ const UserInput = props => {
 
   const showCurrentLocation = () => {
     setClearError(true);
-    setShowMap(true);
+    setShowMap(!showMap);
     setDisplayTable(false);
+
+    if(showMap){
+      setShowMap(false);
+      setMapButtonLabel("Show Current Location");
+    }
   };
 
   useEffect(() => {
@@ -137,6 +144,13 @@ const UserInput = props => {
 
     timetable?.statusErrorMessage && setClearError(false);
   }, []);
+
+  useEffect(() => {
+    if(showMap){
+      setMapButtonLabel("Hide Map")
+    };
+    // console.log("MAP REF", mapButton)
+  }, [showMap]);
 
   return (
     <div>
@@ -193,10 +207,12 @@ const UserInput = props => {
             </button>
             <button
               type="button"
-              className="btn btn-light bg-color-second ml-3 custom-button"
+              className={showMap? "btn btn-light bg-color-fourth ml-3 custom-button":
+              "btn btn-light bg-color-second ml-3 custom-button"}
               onClick={showCurrentLocation}
+              ref={mapButton}
             >
-              Show Current Location
+              {mapButtonLabel}
             </button>
           </div>
         </form>
