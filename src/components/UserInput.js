@@ -149,7 +149,6 @@ const UserInput = props => {
     if(showMap){
       setMapButtonLabel("Hide Map")
     };
-    // console.log("MAP REF", mapButton)
   }, [showMap]);
 
   return (
