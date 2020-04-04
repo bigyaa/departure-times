@@ -116,16 +116,16 @@ const UserInput = props => {
       station => station.name === destination
     );
 
-    destination !== "None"
-      ? getTimetableFromStationToStation({
-          lineID: originationDetails?.lineID,
-          originationID: originationDetails?.id,
-          destinationID: destinationDetails?.id
-        })
-      : getArrivalsForStop({
-          lineID: originationDetails?.lineID,
-          naptanID: originationDetails?.id
-        });
+    // destination !== "None"
+    //   ? getTimetableFromStationToStation({
+    //       lineID: originationDetails?.lineID,
+    //       originationID: originationDetails?.id,
+    //       destinationID: destinationDetails?.id
+    //     })
+    //   : getArrivalsForStop({
+    //       lineID: originationDetails?.lineID,
+    //       naptanID: originationDetails?.id
+    //     });
   };
 
   const showCurrentLocation = () => {
@@ -140,7 +140,7 @@ const UserInput = props => {
   };
 
   useEffect(() => {
-    getRouteByModeTube();
+    // getRouteByModeTube();
 
     timetable?.statusErrorMessage && setClearError(false);
   }, []);
