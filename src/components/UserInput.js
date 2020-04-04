@@ -6,8 +6,8 @@ import GoogleMap from "./GoogleMap";
 import Timetable from "./Timetable";
 
 const UserInput = props => {
-  const APP_ID = process.env.REACT_APP_APP_ID;
-  const APP_KEY = process.env.REACT_APP_APP_KEY;
+  const APP_ID = process?.env?.REACT_APP_APP_ID || console.log("No env file found");
+  const APP_KEY = process?.env?.REACT_APP_APP_KEY || console.log("No env file found");
 
   const [arrivals, setArrivals] = useState([]);
   const [tubeRoutes, setTubeRoutes] = useState([]);
@@ -116,16 +116,16 @@ const UserInput = props => {
       station => station.name === destination
     );
 
-    // destination !== "None"
-    //   ? getTimetableFromStationToStation({
-    //       lineID: originationDetails?.lineID,
-    //       originationID: originationDetails?.id,
-    //       destinationID: destinationDetails?.id
-    //     })
-    //   : getArrivalsForStop({
-    //       lineID: originationDetails?.lineID,
-    //       naptanID: originationDetails?.id
-    //     });
+    destination !== "None"
+      ? getTimetableFromStationToStation({
+          lineID: originationDetails?.lineID,
+          originationID: originationDetails?.id,
+          destinationID: destinationDetails?.id
+        })
+      : getArrivalsForStop({
+          lineID: originationDetails?.lineID,
+          naptanID: originationDetails?.id
+        });
   };
 
   const showCurrentLocation = () => {
@@ -140,7 +140,7 @@ const UserInput = props => {
   };
 
   useEffect(() => {
-    // getRouteByModeTube();
+    getRouteByModeTube();
 
     timetable?.statusErrorMessage && setClearError(false);
   }, []);
