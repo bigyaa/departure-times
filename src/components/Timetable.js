@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 
 const Timetable = props => {
   const schedules = props.data?.timetable?.routes?.[0]?.schedules;

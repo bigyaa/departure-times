@@ -108,7 +108,6 @@ const UserInput = (props) => {
 		setDisplayTable(true);
 		setShowMap(false);
 
-		console.log("error", errors);
 		const origination = document.getElementById("originationStation").value;
 		const destination = document.getElementById("destinationStation").value;
 
@@ -151,7 +150,9 @@ const UserInput = (props) => {
 	useEffect(() => {
 		if (showMap) {
 			setMapButtonLabel("Hide Map");
-		}
+		} else {
+      setMapButtonLabel("Show Current Location")
+    }
 	}, [showMap]);
 
 	return (
@@ -159,7 +160,7 @@ const UserInput = (props) => {
 			{!clearError && errors.length > 0 && (
 				<ErrorBox errors={errors} />
 			)}
-      
+
 			<div className="jumbotron bg-color-first text-dark">
 				<form onSubmit={handleSubmit}>
 					<div className="form-row">
