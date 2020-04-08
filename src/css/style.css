@@ -7,7 +7,7 @@ body {
 }
 
 .main {
-  height: 150vh;
+  height: 250vh;
 }
 
 .map {
@@ -20,7 +20,7 @@ body {
 
 .main-heading {
   font-family: "Playfair Display" !important;
-  font-size: 3.5vw;
+  font-size: 2.5vw;
 }
 
 .secondary-heading {
@@ -42,4 +42,9 @@ td {
 
 .row_span-wrapper th:first-child {
   width: 150px;
+}
+
+#logo {
+  height: 10vw;
+  width: 10vw;
 }

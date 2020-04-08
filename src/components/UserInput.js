@@ -151,15 +151,13 @@ const UserInput = (props) => {
 		if (showMap) {
 			setMapButtonLabel("Hide Map");
 		} else {
-      setMapButtonLabel("Show Current Location")
-    }
+			setMapButtonLabel("Show Current Location");
+		}
 	}, [showMap]);
 
 	return (
 		<div>
-			{!clearError && errors.length > 0 && (
-				<ErrorBox errors={errors} />
-			)}
+			{!clearError && errors.length > 0 && <ErrorBox errors={errors} />}
 
 			<div className="jumbotron bg-color-first text-dark">
 				<form onSubmit={handleSubmit}>
@@ -234,7 +232,9 @@ const UserInput = (props) => {
 			{timetable?.timetable?.routes?.[0]?.schedules && (
 				<Timetable {...props} data={timetable} />
 			)}
-			{showMap && <GoogleMap {...props} />}
+			<div className="w-100 bg-color-thirdt">
+				{showMap && <GoogleMap {...props} />}
+			</div>
 		</div>
 	);
 };
