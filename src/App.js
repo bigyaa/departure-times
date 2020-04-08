@@ -16,7 +16,7 @@ const initializeReactGA = () => {
 
 function App(props) {
   initializeReactGA();
-console.log("herehr", TRACKING_CODE, initializeReactGA())
+
   return (
     <div className="main bg-color-third">
       <div className="container">
