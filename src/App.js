@@ -7,7 +7,7 @@ import "./css/style.css";
 
 import UserInput from "./components/UserInput";
 
-const TRACKING_CODE=process?.env?.TRACKING_CODE
+const TRACKING_CODE=process?.env?.REACT_APP_TRACKING_CODE
 
 const initializeReactGA = () => {
   ReactGA.initialize(TRACKING_CODE);
@@ -16,7 +16,7 @@ const initializeReactGA = () => {
 
 function App(props) {
   initializeReactGA();
-  
+console.log("herehr", TRACKING_CODE, initializeReactGA())
   return (
     <div className="main bg-color-third">
       <div className="container">
