@@ -36,8 +36,9 @@ select {
   font-size: 1.15rem;
 }
 
-td {
-  font-size: 1.15vw;
+.table td {
+  font-size: 1rem;
+  vertical-align: middle;
 }
 
 .row_span-wrapper th:first-child {
