@@ -159,10 +159,10 @@ const UserInput = (props) => {
 		<div>
 			{!clearError && errors.length > 0 && <ErrorBox errors={errors} />}
 
-			<div className="jumbotron bg-color-first text-dark">
+			<div className="jumbotron bg-color-first text-dark mt-4">
 				<form onSubmit={handleSubmit}>
 					<div className="form-row">
-						<div className="form-group col text-white">
+						<div className="form-group col-12 col-sm-12 col-lg-6 text-white">
 							<label htmlFor="originationStation" className="input-label">
 								<b>Origination Station</b>
 							</label>
@@ -179,7 +179,7 @@ const UserInput = (props) => {
 							</select>
 						</div>
 
-						<div className="form-group col text-white">
+						<div className="form-group col-12 col-sm-12 col-lg-6 text-white">
 							<label htmlFor="destinationStation" className="input-label">
 								<b>Destination Station</b>
 							</label>
