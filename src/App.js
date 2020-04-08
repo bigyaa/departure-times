@@ -1,12 +1,22 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ReactGA from 'react-ga';
 
 import "./css/helper.css";
 import "./css/style.css";
 
 import UserInput from "./components/UserInput";
 
+const TRACKING_CODE=process?.env?.TRACKING_CODE
+
+const initializeReactGA = () => {
+  ReactGA.initialize(TRACKING_CODE);
+  ReactGA.pageview('/');
+}
+
 function App(props) {
+  initializeReactGA();
+  
   return (
     <div className="main bg-color-third">
       <div className="container">
