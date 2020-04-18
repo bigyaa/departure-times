@@ -23,8 +23,8 @@ const ModifiedGoogleMap = (props) => {
 				<LoadScript id="script-loader" googleMapsApiKey={MAP_API} {...props}>
 					<GoogleMap
 						mapContainerStyle={{
-							height: "400px",
-							// width: "800px",
+							height: "100%",
+							width: "100%",
 						}}
 						center={position}
 						zoom={11}

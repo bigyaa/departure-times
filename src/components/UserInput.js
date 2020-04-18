@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import OriginationTimetable from "./OriginationTimetable";
-import GoogleMap from "./GoogleMap";
 import Timetable from "./Timetable";
 import ErrorBox from "./ErrorBox";
 
@@ -12,10 +11,11 @@ const UserInput = (props) => {
 	const APP_KEY =
 		process?.env?.REACT_APP_APP_KEY || console.log("No env file found");
 
+	const { showMap, setShowMap } = props;
+
 	const [arrivals, setArrivals] = useState([]);
 	const [tubeRoutes, setTubeRoutes] = useState([]);
 	const [timetable, setTimetable] = useState([]);
-	const [showMap, setShowMap] = useState(false);
 	const [clearError, setClearError] = useState(false);
 	const [displayTable, setDisplayTable] = useState(true);
 	const [mapButtonLabel, setMapButtonLabel] = useState("Show Current Location");
@@ -118,16 +118,16 @@ const UserInput = (props) => {
 			(station) => station.name === destination
 		);
 
-		destination !== "None"
-			? getTimetableFromStationToStation({
-					lineID: originationDetails?.lineID,
-					originationID: originationDetails?.id,
-					destinationID: destinationDetails?.id,
-			  })
-			: getArrivalsForStop({
-					lineID: originationDetails?.lineID,
-					naptanID: originationDetails?.id,
-			  });
+		// destination !== "None"
+		// 	? getTimetableFromStationToStation({
+		// 			lineID: originationDetails?.lineID,
+		// 			originationID: originationDetails?.id,
+		// 			destinationID: destinationDetails?.id,
+		// 	  })
+		// 	: getArrivalsForStop({
+		// 			lineID: originationDetails?.lineID,
+		// 			naptanID: originationDetails?.id,
+		// 	  });
 	};
 
 	const showCurrentLocation = () => {
@@ -142,7 +142,7 @@ const UserInput = (props) => {
 	};
 
 	useEffect(() => {
-		getRouteByModeTube();
+		// getRouteByModeTube();
 
 		timetable?.statusErrorMessage && setClearError(false);
 	}, []);
@@ -162,7 +162,7 @@ const UserInput = (props) => {
 			<div className="jumbotron bg-color-first text-dark mt-4">
 				<form onSubmit={handleSubmit}>
 					<div className="form-row">
-						<div className="form-group col-12 col-sm-12 col-lg-6 text-white">
+						<div className="form-group col-12 text-white">
 							<label htmlFor="originationStation" className="input-label">
 								<b>Origination Station</b>
 							</label>
@@ -178,8 +178,9 @@ const UserInput = (props) => {
 									))}
 							</select>
 						</div>
-
-						<div className="form-group col-12 col-sm-12 col-lg-6 text-white">
+					</div>
+					<div className="form-row">
+						<div className="form-group col-12 text-white">
 							<label htmlFor="destinationStation" className="input-label">
 								<b>Destination Station</b>
 							</label>
@@ -232,9 +233,6 @@ const UserInput = (props) => {
 			{timetable?.timetable?.routes?.[0]?.schedules && (
 				<Timetable {...props} data={timetable} />
 			)}
-			<div className="w-100 bg-color-thirdt">
-				{showMap && <GoogleMap {...props} />}
-			</div>
 		</div>
 	);
 };
